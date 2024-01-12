@@ -4,24 +4,31 @@
 #include <iostream>
 #include <cstdlib>
 #include <string>
-using namespace std;
+using std::cout, std::string, std::endl;
 
 typedef long long int vl;
 
+template<typename T>
 class tree {
     public:
-    string word;
+    T word;
     tree *right;
     tree *left;
 };
 
 class binaryTree {
+    void rmTree(tree<string>* &node);
     public:
-        tree *root;
+        tree<string> *root;
         binaryTree();
-        vl treeDepth(tree *node);
-        void treeInsert(tree **node, string insert);
-        int wordSearch(tree *temp, string find);
+        ~binaryTree();
+        vl treeDepth(tree<string>* node);
+};
+
+class balTree: public binaryTree {
+    public:
+        void treeInsert(tree<string>* &node, string insert);
+        int wordSearch(tree<string>* temp, string find);
 };
 
 #endif

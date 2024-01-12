@@ -13,7 +13,7 @@ int main(){
     fstream myfile("fairy_tails.txt");
     if(myfile.is_open()) {
         while(getline(myfile, fileText)){
-            example.treeInsert(&(example.root), fileText);
+            example.treeInsert(example.root, fileText);
         }
     }
     myfile.close();
