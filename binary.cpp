@@ -18,7 +18,7 @@ void binaryTree::rmTree(tree<string>* &node) {
     }
 }
 
-// Funtions for balanaced tree
+// Funtions for Balanaced Tree
 
 vl binaryTree::treeDepth(tree<string> *node) {
     if(node != NULL) {
@@ -35,7 +35,7 @@ vl binaryTree::treeDepth(tree<string> *node) {
     return 0;
 }
 
-void binaryTree::treeInsert(tree<string>* &node, string insert) {
+void balanacedTree::insert(tree<string>* &node, string word) {
     
     if(node == NULL) {
         node = new tree<string>;
@@ -45,16 +45,16 @@ void binaryTree::treeInsert(tree<string>* &node, string insert) {
             exit(1);
         }
 
-        node->word = insert;
+        node->word = word;
         node->left = node->right = NULL;
     } else {
         vl left = treeDepth(node->left);
         vl right = treeDepth(node->right);
         
         if(left <= right) {
-            treeInsert(node->left, insert);
+            insert(node->left, word);
         } else {
-            treeInsert(node->right, insert);
+            insert(node->right, word);
         }
     }
 

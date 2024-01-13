@@ -19,6 +19,8 @@ class tree {
 
 class binaryTree {
     void rmTree(tree<string>* &node);
+    virtual void insert() = 0;
+    virtual void search() = 0;
     public:
         tree<string> *root;
         binaryTree();
@@ -26,10 +28,10 @@ class binaryTree {
         vl treeDepth(tree<string>* node);
 };
 
-class balTree: public binaryTree {
+class balanacedTree: public binaryTree {
     public:
-        void treeInsert(tree<string>* &node, string insert);
-        int wordSearch(tree<string>* temp, string find);
+        void insert(tree<string>* &node, string insert);
+        int search(tree<string>* temp, string find);
 };
 
 class searchTree: public binaryTree {
