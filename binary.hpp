@@ -5,7 +5,7 @@
 #include <cstdlib>
 #include <string>
 
-using std::cout, std::string, std::endl;
+using namespace std;
 
 typedef long long int vl;
 
@@ -18,24 +18,28 @@ class tree {
 };
 
 class binaryTree {
-    void rmTree(tree<string>* &node);
-    virtual void insert() = 0;
-    virtual void search() = 0;
     public:
         tree<string> *root;
         binaryTree();
         ~binaryTree();
         vl treeDepth(tree<string>* node);
+        void rmTree(tree<string>* &node);
 };
 
 class balanacedTree: public binaryTree {
+    string prompt;
     public:
+        balanacedTree() { prompt = "Balanced Tree: "; };
         void insert(tree<string>* &node, string insert);
         int search(tree<string>* temp, string find);
 };
 
 class searchTree: public binaryTree {
-
+    string prompt;
+    public:
+        searchTree() { prompt = "Search Tree: "; };
+        void insert(tree<string>* &node, string insert);
+        int search(tree<string>* temp, string find);
 };
 
 #endif
