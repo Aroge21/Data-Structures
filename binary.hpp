@@ -4,6 +4,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <string>
+
 using std::cout, std::string, std::endl;
 
 typedef long long int vl;
@@ -29,6 +30,10 @@ class balTree: public binaryTree {
     public:
         void treeInsert(tree<string>* &node, string insert);
         int wordSearch(tree<string>* temp, string find);
+};
+
+class searchTree: public binaryTree {
+
 };
 
 #endif
