@@ -7,20 +7,20 @@ binaryTree::binaryTree() {
 }
 
 binaryTree::~binaryTree() {
-    rmTree(this->root);
+    rmData(this->root);
 }
 
-void binaryTree::rmTree(tree<string>* &node) {
+void binaryTree::rmData(treeBase<string>* &node) {
     if(node != NULL){
-        rmTree(node->left);
-        rmTree(node->right);
+        rmData(node->left);
+        rmData(node->right);
         delete node;
     }
 }
 
 
 
-vl binaryTree::treeDepth(tree<string> *node) {
+vl binaryTree::treeDepth(treeBase<string> *node) {
     if(node != NULL) {
         vl leftval = treeDepth(node->left);
         vl rightval = treeDepth(node->right);
@@ -37,10 +37,10 @@ vl binaryTree::treeDepth(tree<string> *node) {
 
 // Funtions for Balanced Tree
 
-void balanacedTree::insert(tree<string>* &node, string word) {
+void balanacedTree::insert(treeBase<string>* &node, string word) {
     
     if(node == NULL) {
-        node = new tree<string>;
+        node = new treeBase<string>;
         
         if(node == NULL) {
             cout << "Memory Error!!!\n";
@@ -63,7 +63,7 @@ void balanacedTree::insert(tree<string>* &node, string word) {
 
 }
 
-int balanacedTree::search(tree<string> *temp, string find) {
+int balanacedTree::search(treeBase<string> *temp, string find) {
     int appear = 0;
     if(temp != NULL) {
         appear += (find.compare(temp->word) == 0) ? 1 : 0;
@@ -75,10 +75,10 @@ int balanacedTree::search(tree<string> *temp, string find) {
 
 // Funtions for Search Tree
 
-void searchTree::insert(tree<string>* &node, string word) {
+void searchTree::insert(treeBase<string>* &node, string word) {
     
     if(node == NULL) {
-        node = new tree<string>;
+        node = new treeBase<string>;
         
         if(node == NULL) {
             cout << "Memory Error!!!\n";
@@ -99,7 +99,7 @@ void searchTree::insert(tree<string>* &node, string word) {
     }
 }
 
-int searchTree::search(tree<string>* temp, string find) {
+int searchTree::search(treeBase<string>* temp, string find) {
     int result = 0;
     if(temp != NULL) {
         result += (temp->word.compare(find) == 0) ? 1 : 0;

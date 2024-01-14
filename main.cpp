@@ -1,6 +1,7 @@
 #include <fstream>
 #include <chrono>
 #include "binary.hpp"
+#include "list.hpp"
 using namespace std;
 using namespace chrono;
 
@@ -28,14 +29,16 @@ void execute(char fileName[]) {
     duration<double> elapsed = end - start;
     cout << data.message() << elapsed.count() << " seconds" << endl;
 
-    cout << "Search word: hello";
     //cin >> temp;
+    temp = "hello";
     start = hrc::now();
-    int result = data.search(data.root, "hello");
+    int result = data.search(data.root, temp);
     cout << temp << ": " << result << endl;
     end = hrc::now();
     elapsed = end - start;
-    cout << data.message() << elapsed.count() << " seconds" << endl;
+
+    cout << "Search Time: " << elapsed.count() << " seconds" << endl;
+    cout << endl;
 
 }
 
@@ -43,6 +46,7 @@ int main(int argc, char* argv[]){
 
     if(argc != 2) { 
         cout << "Please enter file input" << endl;
+        exit(1);
     }
 
     execute<searchTree>(argv[1]);
