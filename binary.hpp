@@ -30,6 +30,7 @@ class balanacedTree: public binaryTree {
     string prompt;
     public:
         balanacedTree() { prompt = "Balanced Tree: "; };
+        string message() { return prompt; };
         void insert(tree<string>* &node, string insert);
         int search(tree<string>* temp, string find);
 };
@@ -38,6 +39,7 @@ class searchTree: public binaryTree {
     string prompt;
     public:
         searchTree() { prompt = "Search Tree: "; };
+        string message() { return prompt; };
         void insert(tree<string>* &node, string insert);
         int search(tree<string>* temp, string find);
 };

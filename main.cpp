@@ -5,35 +5,47 @@ using namespace std;
 using namespace chrono;
 
 template<class T>
-void execute(string prompt) {
+void execute(char fileName[]) {
+    typedef high_resolution_clock hrc;
 
     T data;
     string temp;
 
-    fstream myfile("fairy_tails.txt");
-    auto start = high_resolution_clock::now();
+    fstream myfile(fileName);
+    auto start = hrc::now();
 
     if(myfile.is_open()) {
         while(getline(myfile, temp)){
             data.insert(data.root, temp);
         }
+    } else {
+        cout << "Not a valid file name!!!" << endl;
+        exit(1);
     }
     myfile.close();
 
-    auto end = high_resolution_clock::now();
-    duration<double> duration = end - start;
+    auto end = hrc::now();
+    duration<double> elapsed = end - start;
+    cout << data.message() << elapsed.count() << " seconds" << endl;
 
-    cout << data.prompt << duration.count() << " seconds";
-
-    cout << "Please Enter a word to search: ";
-    cin >> temp;
-    int result = data.search(data.root, temp);
+    cout << "Search word: hello";
+    //cin >> temp;
+    start = hrc::now();
+    int result = data.search(data.root, "hello");
     cout << temp << ": " << result << endl;
+    end = hrc::now();
+    elapsed = end - start;
+    cout << data.message() << elapsed.count() << " seconds" << endl;
 
 }
 
 int main(int argc, char* argv[]){
 
-    execute<searchTree>();
+    if(argc != 2) { 
+        cout << "Please enter file input" << endl;
+    }
+
+    execute<searchTree>(argv[1]);
+    execute<balanacedTree>(argv[1]);
  
 }
