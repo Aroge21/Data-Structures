@@ -2,15 +2,18 @@
 
 // Fucntions for Binary Tree Class
 
-binaryTree::binaryTree() {
-    this->root = NULL;
+template<class T>
+binaryTree<T>::binaryTree() {
+    top->root = NULL;
 }
 
-binaryTree::~binaryTree() {
-    rmData(this->root);
+template<class T>
+binaryTree<T>::~binaryTree() {
+    rmData(this->top);
 }
 
-void binaryTree::rmData(treeBase<string>* &node) {
+template<class T>
+void binaryTree<T>::rmData(treeHead<T> &node) {
     if(node != NULL){
         rmData(node->left);
         rmData(node->right);
@@ -18,9 +21,8 @@ void binaryTree::rmData(treeBase<string>* &node) {
     }
 }
 
-
-
-vl binaryTree::treeDepth(treeBase<string> *node) {
+template<class T>
+vl binaryTree<T>::treeDepth(treeHead<T> node) {
     if(node != NULL) {
         vl leftval = treeDepth(node->left);
         vl rightval = treeDepth(node->right);
@@ -37,7 +39,8 @@ vl binaryTree::treeDepth(treeBase<string> *node) {
 
 // Funtions for Balanced Tree
 
-void balanacedTree::insert(treeBase<string>* &node, string word) {
+template<class T>
+void balanacedTree<T>::insert(treeHead<T> &node, T word) {
     
     if(node == NULL) {
         node = new treeBase<string>;
@@ -63,7 +66,8 @@ void balanacedTree::insert(treeBase<string>* &node, string word) {
 
 }
 
-int balanacedTree::search(treeBase<string> *temp, string find) {
+template<class T>
+int balanacedTree<T>::search(treeHead<T> temp, T find) {
     int appear = 0;
     if(temp != NULL) {
         appear += (find.compare(temp->word) == 0) ? 1 : 0;
@@ -75,7 +79,8 @@ int balanacedTree::search(treeBase<string> *temp, string find) {
 
 // Funtions for Search Tree
 
-void searchTree::insert(treeBase<string>* &node, string word) {
+template<class T>
+void searchTree<T>::insert(treeHead<T> &node, T word) {
     
     if(node == NULL) {
         node = new treeBase<string>;
@@ -99,7 +104,8 @@ void searchTree::insert(treeBase<string>* &node, string word) {
     }
 }
 
-int searchTree::search(treeBase<string>* temp, string find) {
+template<class T>
+int searchTree<T>::search(treeHead<T> temp, T find) {
     int result = 0;
     if(temp != NULL) {
         result += (temp->word.compare(find) == 0) ? 1 : 0;

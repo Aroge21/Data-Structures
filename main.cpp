@@ -17,7 +17,7 @@ void execute(char fileName[]) {
 
     if(myfile.is_open()) {
         while(getline(myfile, temp)){
-            data.insert(data.root, temp);
+            data.insert(data.top, temp);
         }
     } else {
         cout << "Not a valid file name!!!" << endl;
@@ -32,14 +32,14 @@ void execute(char fileName[]) {
     //cin >> temp;
     temp = "hello";
     start = hrc::now();
-    int result = data.search(data.root, temp);
+    int result = data.search(data.top, temp);
     cout << temp << ": " << result << endl;
     end = hrc::now();
     elapsed = end - start;
 
     cout << "Search Time: " << elapsed.count() << " seconds" << endl;
     cout << endl;
-
+ 
 }
 
 int main(int argc, char* argv[]){
@@ -49,7 +49,8 @@ int main(int argc, char* argv[]){
         exit(1);
     }
 
-    execute<searchTree>(argv[1]);
-    execute<balanacedTree>(argv[1]);
+    //execute<balanacedTree<string>>(argv[1]);
+    execute<queuedList<string>>(argv[1]);
+    //execute<sortedList<string>>(argv[1]);
  
 }

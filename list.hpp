@@ -1,21 +1,26 @@
 #ifndef LIST
 #define LIST
 
+#include <cstdlib>
+#include <string>
+using namespace std;
+
 template <class T>
 class listBase {
-    T word;
-    listBase *next;
+    public:
+        T word;
+        listBase *next;
 };
 
 template <class T>
 class listHead {
-    listBase* first;
-    listBase* last;
+    public:
+        listBase<T>* first;
+        listBase<T>* last;
 };
 
 template <class T>
 class List {
-    string searchTime;
     public:
         listHead<T> top;
         List();
@@ -24,10 +29,24 @@ class List {
 
 template <class T>
 class queuedList: public List<T> {
-
-    
-
+    string setup;
+    public:
+        queuedList() { setup = "Queued List: "; };
+        string message() { return setup; };
+        void insert(listHead<T> &fhead, T insert);
+        int search(listHead<T> fhead, T find);
 };
+
+template <class T>
+class sortedList: public List<T> {
+    string setup;
+    public:
+        sortedList() { setup = "Sorted List: "; };
+        string message() { return setup; };
+        void insert(listHead<T> &fhead, T insert);
+        int search(listHead<T> fhead, T find);
+};
+
 
 
 #endif
