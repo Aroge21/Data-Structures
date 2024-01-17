@@ -4,16 +4,16 @@
 
 template<class T>
 binaryTree<T>::binaryTree() {
-    top->root = NULL;
+    top = NULL;
 }
 
 template<class T>
 binaryTree<T>::~binaryTree() {
-    rmData(this->top);
+    rmData(top);
 }
 
 template<class T>
-void binaryTree<T>::rmData(treeHead<T> &node) {
+void binaryTree<T>::rmData(treeBase<T>* &node) {
     if(node != NULL){
         rmData(node->left);
         rmData(node->right);
@@ -22,7 +22,7 @@ void binaryTree<T>::rmData(treeHead<T> &node) {
 }
 
 template<class T>
-vl binaryTree<T>::treeDepth(treeHead<T> node) {
+vl binaryTree<T>::treeDepth(treeBase<T>* node) {
     if(node != NULL) {
         vl leftval = treeDepth(node->left);
         vl rightval = treeDepth(node->right);
@@ -40,10 +40,9 @@ vl binaryTree<T>::treeDepth(treeHead<T> node) {
 // Funtions for Balanced Tree
 
 template<class T>
-void balanacedTree<T>::insert(treeHead<T> &node, T word) {
-    
+void balanacedTree<T>::insert(treeBase<T>* &node, T word) {
     if(node == NULL) {
-        node = new treeBase<string>;
+        node = new treeBase<T>;
         
         if(node == NULL) {
             cout << "Memory Error!!!\n";
@@ -54,8 +53,8 @@ void balanacedTree<T>::insert(treeHead<T> &node, T word) {
         node->left = node->right = NULL;
         
     } else {
-        vl left = treeDepth(node->left);
-        vl right = treeDepth(node->right);
+        vl left = this->treeDepth(node->left);
+        vl right = this->treeDepth(node->right);
         
         if(left <= right) {
             insert(node->left, word);
@@ -67,7 +66,7 @@ void balanacedTree<T>::insert(treeHead<T> &node, T word) {
 }
 
 template<class T>
-int balanacedTree<T>::search(treeHead<T> temp, T find) {
+int balanacedTree<T>::search(treeBase<T>* temp, T find) {
     int appear = 0;
     if(temp != NULL) {
         appear += (find.compare(temp->word) == 0) ? 1 : 0;
@@ -80,10 +79,10 @@ int balanacedTree<T>::search(treeHead<T> temp, T find) {
 // Funtions for Search Tree
 
 template<class T>
-void searchTree<T>::insert(treeHead<T> &node, T word) {
+void searchTree<T>::insert(treeBase<T>* &node, T word) {
     
     if(node == NULL) {
-        node = new treeBase<string>;
+        node = new treeBase<T>;
         
         if(node == NULL) {
             cout << "Memory Error!!!\n";
@@ -94,9 +93,7 @@ void searchTree<T>::insert(treeHead<T> &node, T word) {
         node->left = node->right = NULL;
         
     } else {
-        int result = node->word.compare(word);
-        
-        if(result >= 0) {
+        if(word < node->word) {
             insert(node->left, word);
         } else {
             insert(node->right, word);
@@ -105,11 +102,11 @@ void searchTree<T>::insert(treeHead<T> &node, T word) {
 }
 
 template<class T>
-int searchTree<T>::search(treeHead<T> temp, T find) {
+int searchTree<T>::search(treeBase<T>* temp, T find) {
     int result = 0;
     if(temp != NULL) {
-        result += (temp->word.compare(find) == 0) ? 1 : 0;
-        if(temp->word.compare(find) >= 0) {
+        result += (find == temp->word) ? 1 : 0;
+        if(find < temp->word) {
             result += search(temp->left, find);
         } else {
             result += search(temp->right, find);

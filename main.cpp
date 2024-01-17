@@ -1,7 +1,9 @@
 #include <fstream>
 #include <chrono>
 #include "binary.hpp"
+#include "binary.cpp"
 #include "list.hpp"
+#include "list.cpp"
 using namespace std;
 using namespace chrono;
 
@@ -49,8 +51,12 @@ int main(int argc, char* argv[]){
         exit(1);
     }
 
-    //execute<balanacedTree<string>>(argv[1]);
-    execute<queuedList<string>>(argv[1]);
+    cout << "\nFile Name: " << argv[1] << "\n" << endl;
+
+    execute<balanacedTree<string>>(argv[1]);
+    //execute<searchTree<string>>(argv[1]);
+    //execute<queuedList<string>>(argv[1]);
     //execute<sortedList<string>>(argv[1]);
- 
+
+    return 0;
 }

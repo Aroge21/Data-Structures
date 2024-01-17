@@ -1,5 +1,5 @@
 #things to remove
-/build
+/text
 /.vscode
 /*.dSYM
 *.txt

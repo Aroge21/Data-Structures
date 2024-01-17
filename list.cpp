@@ -4,7 +4,7 @@
 
 template<class T>
 List<T>::List() {
-    top->first = top->last = NULL;
+    top.first = top.last = NULL;
 }
 
 template<class T>
@@ -49,7 +49,7 @@ int queuedList<T>::search(listHead<T> fhead, T find) {
     int result = 0;
     while(fhead.first != NULL) {
         result += (fhead.first->word == find) ? 1 : 0;
-        fhead.first = fhead.first->word;
+        fhead.first = fhead.first->next;
     }
 
     return result;
@@ -87,9 +87,9 @@ void sortedList<T>::insert(listHead<T> &fhead, T insert) {
 template <class T>
 int sortedList<T>::search(listHead<T> fhead, T find) {
     int result = 0;
-    while(fhead->first != NULL || find <= fhead->first->word) {
+    while((fhead.first != NULL) && (find >= fhead.first->word)) {
         result += (fhead.first->word == find) ? 1 : 0;
-        fhead.first = fhead.first->word;
+        fhead.first = fhead.first->next;
     }
 
     return result;

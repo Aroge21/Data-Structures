@@ -16,20 +16,16 @@ class treeBase {
         treeBase *left;
 };
 
-template<class T>
-class treeHead {
-    public:
-        treeBase<T>* root;
-};
 
 template<class T>
 class binaryTree {
+    protected:
+        void rmData(treeBase<T>* &node);
     public:
-        treeHead<T> top;
+        treeBase<T>* top;
         binaryTree();
         ~binaryTree();
-        vl treeDepth(treeHead<T> node);
-        void rmData(treeHead<T> &node);
+        vl treeDepth(treeBase<T>* node);
 };
 
 template<class T>
@@ -38,8 +34,8 @@ class balanacedTree: public binaryTree<T> {
     public:
         balanacedTree() { setup = "Balanced Tree: "; };
         string message() { return setup; };
-        void insert(treeHead<T> &node, T insert);
-        int search(treeHead<T> node, T find);
+        void insert(treeBase<T>* &node, T insert);
+        int search(treeBase<T>* node, T find);
 };
 
 template<class T>
@@ -48,8 +44,8 @@ class searchTree: public binaryTree<T> {
     public:
         searchTree() { setup = "Search Tree: "; };
         string message() { return setup; };
-        void insert(treeHead<T> &node, T insert);
-        int search(treeHead<T> node, T find);
+        void insert(treeBase<T>* &node, T insert);
+        int search(treeBase<T>* node, T find);
 };
 
 #endif

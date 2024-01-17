@@ -47,6 +47,4 @@ class sortedList: public List<T> {
         int search(listHead<T> fhead, T find);
 };
 
-
-
 #endif
