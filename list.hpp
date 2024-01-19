@@ -35,6 +35,7 @@ class queuedList: public List<T> {
         string message() { return setup; };
         void insert(listHead<T> &fhead, T insert);
         int search(listHead<T> fhead, T find);
+        T pop(listHead<T> &fhead);
 };
 
 template <class T>

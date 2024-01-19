@@ -44,7 +44,7 @@ void queuedList<T>::insert(listHead<T> &fhead, T insert) {
     }
 }
 
-template <class T>
+template<class T>
 int queuedList<T>::search(listHead<T> fhead, T find) {
     int result = 0;
     while(fhead.first != NULL) {
@@ -55,9 +55,30 @@ int queuedList<T>::search(listHead<T> fhead, T find) {
     return result;
 }
 
+template<class T>
+T queuedList<T>::pop(listHead<T> &fhead) {
+    T t;
+    listBase<T>* temp = NULL;
+
+    if(fhead.first == NULL){
+        fhead.last = NULL;
+        return NULL;
+    }
+
+    // n points to first and t points to node of binary tree
+    temp = fhead.first;
+    t = fhead.first->word;
+    
+    fhead.first = fhead.first->next;
+    if(fhead.first == NULL) fhead.last = NULL;
+
+    free(temp);
+    return t;
+}
+
 // Funtions for Sorted List
 
-template <class T>
+template<class T>
 void sortedList<T>::insert(listHead<T> &fhead, T insert) {
     
     listBase<T>* snode = new listBase<T>;
@@ -84,7 +105,7 @@ void sortedList<T>::insert(listHead<T> &fhead, T insert) {
     temp->next = snode;
 }
 
-template <class T>
+template<class T>
 int sortedList<T>::search(listHead<T> fhead, T find) {
     int result = 0;
     while((fhead.first != NULL) && (find >= fhead.first->word)) {
