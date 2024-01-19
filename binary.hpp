@@ -4,6 +4,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <string>
+#include "list.hpp"
 using namespace std;
 
 typedef long long int vl;
@@ -31,6 +32,7 @@ class binaryTree {
 template<class T>
 class balanacedTree: public binaryTree<T> {
     string setup;
+    queuedList<treeBase<T>*> filter;
     public:
         balanacedTree() { setup = "Balanced Tree: "; };
         string message() { return setup; };

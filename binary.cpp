@@ -1,5 +1,4 @@
 #include "binary.hpp"
-
 // Fucntions for Binary Tree Class
 
 template<class T>
@@ -40,29 +39,19 @@ vl binaryTree<T>::treeDepth(treeBase<T>* node) {
 // Funtions for Balanced Tree
 
 template<class T>
-void balanacedTree<T>::insert(treeBase<T>* &node, T word) {
-    if(node == NULL) {
+void balanacedTree<T>::insert(treeBase<T>* &node, T insert) {
+    if(filter.top.first == NULL) {
         node = new treeBase<T>;
-        
-        if(node == NULL) {
-            cout << "Memory Error!!!\n";
-            exit(1);
-        }
-
-        node->word = word;
-        node->left = node->right = NULL;
-        
-    } else {
-        vl left = this->treeDepth(node->left);
-        vl right = this->treeDepth(node->right);
-        
-        if(left <= right) {
-            insert(node->left, word);
-        } else {
-            insert(node->right, word);
-        }
+        filter.insert(filter.top, this->top);
     }
 
+    treeBase<T>* temp = filter.pop(filter.top);
+    temp->word = insert;
+
+    temp->left =  new treeBase<T>;
+    temp->right = new treeBase<T>;
+    filter.insert(filter.top, temp->left);
+    filter.insert(filter.top, temp->right);
 }
 
 template<class T>
