@@ -54,9 +54,9 @@ int main(int argc, char* argv[]){
     cout << "\nFile Name: " << argv[1] << "\n" << endl;
 
     execute<balanacedTree<string> >(argv[1]);
-    //execute<searchTree<string>>(argv[1]);
-    //execute<queuedList<string>>(argv[1]);
-    //execute<sortedList<string>>(argv[1]);
+    execute<searchTree<string> >(argv[1]);
+    execute<queuedList<string> >(argv[1]);
+    execute<sortedList<string> >(argv[1]);
 
     return 0;
 }

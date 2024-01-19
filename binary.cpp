@@ -48,8 +48,11 @@ void balanacedTree<T>::insert(treeBase<T>* &node, T insert) {
     treeBase<T>* temp = filter.pop(filter.top);
     temp->word = insert;
 
-    temp->left =  new treeBase<T>;
+    temp->left = new treeBase<T>;
+    temp->left->left = temp->left->right = NULL;
     temp->right = new treeBase<T>;
+    temp->right->left = temp->right->right = NULL;
+
     filter.insert(filter.top, temp->left);
     filter.insert(filter.top, temp->right);
 }
@@ -58,7 +61,7 @@ template<class T>
 int balanacedTree<T>::search(treeBase<T>* temp, T find) {
     int appear = 0;
     if(temp != NULL) {
-        appear += (find.compare(temp->word) == 0) ? 1 : 0;
+        appear += (temp->word == find) ? 1 : 0;
         appear += search(temp->left, find);
         appear += search(temp->right, find);
     }
